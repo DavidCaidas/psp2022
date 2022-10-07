@@ -1,6 +1,6 @@
-package com.davidcai.psp.ut02.data.remote
+package com.davidcai.psp.ut02.ex01.data.remote
 
-import com.davidcai.psp.ut02.data.remote.models.UserApiModel
+import com.davidcai.psp.ut02.ex01.data.remote.models.UserApiModel
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -23,9 +23,10 @@ class RetrofitApiClient {
         return buildClient().create(ApiEndPoints::class.java)
     }
 
-    fun getUsers(): List<UserApiModel>{
-        val callUsers = apiEndPoints.getUsers() //Llamada
-        val response = callUsers.execute() //Ejecución de la llamada
+    fun getUser(userId: Int): UserApiModel?{
+        val userCall = apiEndPoints.getUsers(userId)
+        val response = userCall.execute()
+
         if (response.isSuccessful){
             val users = response.body()
             return users ?: emptyList<UserApiModel>()
