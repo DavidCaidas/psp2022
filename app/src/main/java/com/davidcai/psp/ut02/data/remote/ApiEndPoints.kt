@@ -1,11 +1,18 @@
+
 package com.davidcai.psp.ut02.data.remote
 
-import com.davidcai.psp.ut02.data.remote.models.UserApiModel
+import com.davidcai.psp.ut02.data.remote.models.UsersApiModel
+import com.davidcai.psp.ut02.domain.User
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Path
 
-interface ApiEndPoints {
+interface ApiEndPoint {
     @GET("users")
-fun getUsers(): Call<List<UserApiModel>>
+    fun getUsers(): Call<List<UsersApiModel>>
+
+    @GET("users/{userId}")
+    fun getUser(@Path ("userId") userId:Int): Call<UsersApiModel>
 
 }
